@@ -1,0 +1,82 @@
+@model List<Framework.Model.ClienteModel>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Menu do Usuário</title>
+    <!-- Adicione os links para os estilos e scripts necess�rios do DataTables -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link href="~/Css/cliente.css" rel="stylesheet" />
+</head>
+<body>
+    @foreach (var cliente in Model)
+    {
+        <p style="color: white; font-size: 18px; font-family: monospace;">Seja bem-vindo! @cliente.Nome_Usuario</p>
+    }
+
+
+    <div class="signout">
+        <a href="@Url.Action("Logout", "Cliente")">
+            <button class="Btn">
+
+                <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+
+                <div class="text">Logout</div>
+
+            </button>
+        </a>
+    </div>
+
+
+
+    <input type="hidden" id="UsuarioClienteId" value="@ViewBag.UsuarioClienteId" />
+
+    <table id="tbCliente" class="display">
+        <thead>
+            <tr>
+                <th>ClienteId</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Celular</th>
+                <th>Idade</th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @*@foreach (var cliente in Model)
+                {
+                    <tr>
+                        <td>@cliente.ClienteId</td>
+                        <td>@cliente.Nome</td>
+                        <td>@cliente.Email</td>
+                        <td>@cliente.Celular</td>
+                        <td>@cliente.Idade</td>
+                        <td>
+                            <button class="btnEditar" data-clienteid="@cliente.ClienteId" onclick="openEditModal(@cliente.ClienteId)">Editar</button>
+                            <button type="button" class="btnDeletar" data-clienteid="@cliente.ClienteId" onclick="DeleteCliente(@cliente.ClienteId)">Deletar</button>
+                            <button type="button" class="btnUsuarios" data-clienteid="@cliente.ClienteId" onclick="openUsuariosModal(@cliente.ClienteId)">Usuarios</button>
+                        </td>
+                    </tr>
+                }*@
+        </tbody>
+    </table>
+
+
+    @foreach (var cliente in Model)
+    {
+        <img src="@Url.Content(cliente.Caminho_Imagem)" id="logocliente" alt="Imagem do Cliente width="150" height="150" />
+    }
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="~/Js/usuario-logado.js"></script>
+
+</body>
+</html>

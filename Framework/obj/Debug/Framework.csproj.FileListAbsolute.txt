@@ -1,0 +1,6 @@
+C:\Users\ADMINISTRATOR\Source\Repos\Projeto_Arthur_Richard\Framework\bin\Debug\Framework.dll
+C:\Users\ADMINISTRATOR\Source\Repos\Projeto_Arthur_Richard\Framework\bin\Debug\Framework.pdb
+C:\Users\ADMINISTRATOR\Source\Repos\Projeto_Arthur_Richard\Framework\obj\Debug\Framework.csproj.AssemblyReference.cache
+C:\Users\ADMINISTRATOR\Source\Repos\Projeto_Arthur_Richard\Framework\obj\Debug\Framework.csproj.CoreCompileInputs.cache
+C:\Users\ADMINISTRATOR\Source\Repos\Projeto_Arthur_Richard\Framework\obj\Debug\Framework.dll
+C:\Users\ADMINISTRATOR\Source\Repos\Projeto_Arthur_Richard\Framework\obj\Debug\Framework.pdb

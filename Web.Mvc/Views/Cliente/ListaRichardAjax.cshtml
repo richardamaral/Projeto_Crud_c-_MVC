@@ -1,0 +1,229 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Projeto Richard - Lista Ajax</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link href="~/Css/cliente.css" rel="stylesheet"/>
+</head>
+<body>
+
+    <h1 id="tabelaRichard">Tabela AJAX</h1>
+
+
+    <div>
+        <table id="example2" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Celular</th>
+                    <th>Idade</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <button id="AddCliente">+ Adicionar cliente +</button>
+    <a href="@Url.Action("Login", "Cliente")"><button style="left: 20px;" id="Login">⚀ Login ⚀</button></a>
+
+
+
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Cliente</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="/Cliente/JsEditCliente" method="post" id="editForm">
+                        <label for="editClienteId">ID</label>
+                        <input type="text" name="ClienteId" id="editClienteId" />
+                        <div class="form-group">
+                            <label for="editNome">Nome</label>
+                            <input type="text" class="form-control" id="editNome" name="Nome" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email</label>
+                            <input type="text" class="form-control" id="editEmail" name="Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editCelular">Celular</label>
+                            <input type="text" class="form-control" id="editCelular" name="Celular" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editIdade">Idade</label>
+                            <input type="number" class="form-control" id="editIdade" name="Idade" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="salvarEdit" class="btn btn-primary" form="editForm">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Adicionar Cliente</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="salvarCliente" enctype="multipart/form-data">
+                        <label class="tit-clienteId">ID</label>
+                        <div class="form-group">
+                            <div for="editNome" class="form-tit">Nome: </div>
+                            <input type="text" name="Nome" id="Nome" placeholder="Digite o Nome" required />
+                        </div>
+                        <div class="form-group">
+                            <div for="editNome" class="form-tit">Email: </div>
+                            <input type="email" name="Email" id="Email" placeholder="Digite o Email" required />
+                        </div>
+                        <div class="form-group">
+                            <div for="editNome" class="form-tit">Celular: </div>
+                            <input type="text" name="Celular" id="Celular" placeholder="Digite o Celular" required />
+                        </div>
+                        <div class="form-group">
+                            <div for="editNome" class="form-tit">Idade: </div>
+                            <input type="number" name="Idade" id="Idade" placeholder="Digite o Idade" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="imagem">Logotipo</label>
+                            <input type="file" class="form-control" id="imagem" name="imagem" />
+                            <input type="hidden" name="CaminhoArquivo" id="CaminhoArquivo" />
+                        </div>
+
+                        <input type="hidden" name="ClienteId" id="ClienteId" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnSalvarCliente" form="salvarCliente">Salvar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="cadastroUsuarioClienteModal" tabindex="-1" role="dialog" aria-labelledby="cadastroUsuarioClienteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color: orangered; font-size: 20px;" id="cadastroUsuarioClienteModalLabel">Cadastrar Usuário Cliente</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="cadastroUsuarioClienteForm">
+                        <div class="form-group">
+                            <label for="usuarioNomeCadastro">Nome</label>
+                            <input type="text" class="form-control" id="usuarioNomeCadastro" name="Nome" />
+                        </div>
+                        <div class="form-group">
+                            <label for="usuarioEmailCadastro">Email</label>
+                            <input type="text" class="form-control" id="usuarioEmailCadastro" name="Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="usuarioSenhaCadastro">Senha</label>
+                            <input type="password" class="form-control" id="usuarioSenhaCadastro" name="Senha" />
+                        </div>
+                        <div class="form-group">
+                            <label for="usuarioSenhaCadastro">Status</label>
+                            <select name="Ativo" id="UsuarioStatus">
+                                <option value="false">Inativo</option>
+                                <option value="true">Ativo</option>
+                            </select>
+                        </div>
+                        <button type="submit" id="btnSalvarCadastroUsuario" class="btn btn-primary" style="margin: 10px;" form="cadastroUsuarioClienteForm">Cadastrar</button>
+                        <input type="hidden" name="ClienteId" id="Usuario_ClienteId" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div id="tabelaUsuariosContainer">
+                        <table id="tableUsuarios" class="display" style="width:50px">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Senha</th>
+                                    <th>Ativo</th>
+                                    <th>DataCadastro</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="editUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuário</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="/Cliente/JsSetUsuarioCliente" method="post" id="editUsuarioForm">
+                        <label for="editUsuarioClienteId"></label>
+                        <input type="hidden" name="ClienteId" class="editClienteId" />
+                        <input type="hidden" name="UsuarioClienteId" id="editUsuarioClienteId" />
+                        <div class="form-group">
+                            <label for="editUsuarioNome">Nome</label>
+                            <input type="text" class="form-control" id="editUsuarioNome" name="Nome" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmail">Email</label>
+                            <input type="text" class="form-control" id="editUsuarioEmail" name="Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="editUsuarioSenha">Senha</label>
+                            <input type="text" class="form-control" id="editUsuarioSenha" name="Senha" />
+                        </div>
+                        <div class="form-group">
+                            <select name="Ativo" id="editUsuarioStatus">
+                                <option value="false">Inativo</option>
+                                <option value="true">Ativo</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="salvarUsuarioEdit" class="btn btn-primary" form="editUsuarioForm">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="/Js/clienteRichard.js"></script>
+</body>
+</html>

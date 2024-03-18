@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListaAjax</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button type="button" class="btnCliente" value="4040">Cliente 4040</button><br />
+        <table id="example2" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>email</th>
+                    <th>Celular</th>
+                    <th>Idade</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <form id="salvarCliente">
+        <input type="text" name="Nome" placeholder="Digite o Nome" />
+        <input type="text" name="Email" placeholder="Digite o Email"/>
+        <input type="text" name="Celular" placeholder="Digite o Celular"/>
+        <input type="number" name="Idade" placeholder="Digite o Idade"/>
+        <button type="submit">Salvar</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="/Js/cliente.js"></script>
+</body>
+</html>
